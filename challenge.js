@@ -1,15 +1,9 @@
-const incrementCounter = function() {
-  function increment(event) {
-    if (event && event.srcElement === document.getElementById('-')) {
-      document.getElementById('counter').innerHTML = parseInt(counter.innerHTML) - 1;
-    } else {
-      document.getElementById('counter').innerHTML = parseInt(counter.innerHTML) + 1;
-    }
+const incrementCounter = function(event) {
+  if (event && event.srcElement === document.getElementById('-')) {
+    document.getElementById('counter').innerHTML = parseInt(counter.innerHTML) - 1;
+  } else {
+    document.getElementById('counter').innerHTML = parseInt(counter.innerHTML) + 1;
   }
-
-  setInterval(increment, 1000);
-  document.getElementById('-').addEventListener('click', increment)
-  document.getElementById('+').addEventListener('click', increment)
 }
 
 const likes = function(){
@@ -46,28 +40,21 @@ const pauseButton = function() {
       document.getElementById('-').disabled = true
       document.getElementById('+').disabled = true
       document.getElementById('<3').disabled = true
-      // unPaused = false
+      clearInterval(timer)
     } else {
       button.innerText = 'pause'
       document.getElementById('-').disabled = false
       document.getElementById('+').disabled = false
       document.getElementById('<3').disabled = false
-      // unPaused = true
-      // pauseCounter()
+      timer =  setInterval(incrementCounter, 1000)
     }
   }
   button.addEventListener('click', pause)
 }
 
-// let unPaused = true
-//
-// const pauseCounter = function() {
-//   while (unPaused === true) {
-//     incrementCounter()
-//   }
-// }
+let timer = setInterval(incrementCounter, 1000)
+document.getElementById('-').addEventListener('click', incrementCounter)
+document.getElementById('+').addEventListener('click', incrementCounter)
 
 likes()
 pauseButton()
-// pauseCounter()
-incrementCounter()
