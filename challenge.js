@@ -37,18 +37,37 @@ const likes = function(){
 }
 
 const pauseButton = function() {
+
   let button = document.getElementById('pause')
+
   function pause() {
     if (button.innerText === 'pause') {
-      // resume counter, enable buttons, & change text to "pause"
-      
+      button.innerText = 'resume'
+      document.getElementById('-').disabled = true
+      document.getElementById('+').disabled = true
+      document.getElementById('<3').disabled = true
+      // unPaused = false
     } else {
-      // pause counter, disable buttons, change text to "resume"
+      button.innerText = 'pause'
+      document.getElementById('-').disabled = false
+      document.getElementById('+').disabled = false
+      document.getElementById('<3').disabled = false
+      // unPaused = true
+      // pauseCounter()
     }
   }
   button.addEventListener('click', pause)
 }
 
-incrementCounter()
+// let unPaused = true
+//
+// const pauseCounter = function() {
+//   while (unPaused === true) {
+//     incrementCounter()
+//   }
+// }
+
 likes()
 pauseButton()
+// pauseCounter()
+incrementCounter()
