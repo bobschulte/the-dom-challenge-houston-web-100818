@@ -35,21 +35,22 @@ const pause = function() {
     clearInterval(timer)
     buttonToggle(true, 'resume')
   } else {
-    timer =  setInterval(incrementCounter, 1000)
+    timer = setInterval(incrementCounter, 1000)
     buttonToggle(false, 'pause')
   }
 }
 
 const addComment = function() {
-  let form = document.getElementById('comment-form')
-  let comment = form.children[0].value
+  let comment = commentForm.children[0].value
   commentList.innerHTML += `<li>${comment}</li>`
+  event.preventDefault()
 }
 
 let timer = setInterval(incrementCounter, 1000)
 let currentCount = document.getElementById('counter')
 let likeList = document.getElementsByClassName('likes')[0]
 let commentList = document.getElementById('list').appendChild(document.createElement('ul'))
+let commentForm = document.getElementById('comment-form')
 let buttons = {
   minus: document.getElementById('-'),
   plus: document.getElementById('+'),
@@ -62,4 +63,4 @@ buttons['minus'].addEventListener('click', incrementCounter)
 buttons['plus'].addEventListener('click', incrementCounter)
 buttons['like'].addEventListener('click', addLike)
 buttons['pause'].addEventListener('click', pause)
-buttons['submit'].addEventListener('click', addComment)
+commentForm.addEventListener('click', addComment)
