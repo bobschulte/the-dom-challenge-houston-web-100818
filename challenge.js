@@ -1,6 +1,7 @@
 const incrementCounter = function() {
   function increment(plusOrMinusOne) {
-    currentCount.innerHTML = parseInt(counter.innerText) + plusOrMinusOne
+    counter += plusOrMinusOne
+    currentCount.innerText = counter
   }
   event && event.srcElement === buttons['minus'] ? increment(-1) : increment(1)
 }
@@ -10,8 +11,7 @@ const addLike = function() {
     likeList.innerHTML += `<li id=${num} data-count=${count} >${num} has been liked ${count} times</li>`
   }
 
-  const num = currentCount.innerHTML
-  const listNum = document.getElementById(`${num}`)
+  const listNum = document.getElementById(`${counter}`)
   let count = 0
 
   if (listNum) {
@@ -20,7 +20,7 @@ const addLike = function() {
   }
 
   count++
-  addListItem(num, count)
+  addListItem(counter, count)
 }
 
 const pause = function() {
@@ -46,9 +46,10 @@ const addComment = function() {
   event.preventDefault()
 }
 
+let counter = 0
 let timer = setInterval(incrementCounter, 1000)
 let currentCount = document.getElementById('counter')
-let likeList = document.getElementsByClassName('likes')[0]
+let likeList = document.querySelector('.likes')
 let commentList = document.getElementById('list').appendChild(document.createElement('ul'))
 let commentForm = document.getElementById('comment-form')
 let buttons = {
